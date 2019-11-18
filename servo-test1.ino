@@ -1,6 +1,6 @@
 #include <Servo.h>
 
-// creat servo objects to control a servo.
+// create servo objects to control a servo.
 // twelve servo objects can be created on most boards. 
 Servo servoA;
 Servo servoB;
