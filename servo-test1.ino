@@ -1,6 +1,6 @@
 #include <Servo.h>
 
-// create servo objects to control a servo.
+// creates servo objects to control servo motors.
 // twelve servo objects can be created on most boards. 
 Servo servoA;
 Servo servoB;
@@ -29,7 +29,7 @@ void loop()
   for (pos = 0; pos <= 180; pos++)
   {
     // loop is excecuted in steps of 1 degree 
-    
+
     // tells servoA go to position in variable 'pos'
     servoA.write(pos);     
     
