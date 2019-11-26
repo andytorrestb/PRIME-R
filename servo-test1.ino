@@ -1,63 +1,65 @@
-#include <Servo.h>
+//seting up initial position
+#include<Servo.h>
+Servo servo1;
+Servo servo2;
+Servo servo;
+int servoPos =50;
+int buttonState = 0; 
 
-// create servo objects to control a servo.
-// twelve servo objects can be created on most boards. 
-Servo servoA;
-Servo servoB;
-Relay relay1;
+// constants won't change. They're used here to
+// set pin numbers:
+int buttonPin = 6;     // the number of the pushbutton pin
+int ledPin =  7;      // the number of the LED pin
 
-// variable to store the servo position.
-int pos = 0;
-
+// variables will change:
+// variable for reading the pushbutton status
+//defining pins
 void setup()
 {
-  // attaches the servo on pin 9 to servoA. 
-  servoA.attach(9);
-
-  // attaches the servo on pin 8 to servoB.
-  servoB.attach(8);
-
-  Relay1.attach(7);
-  pinMode(Relay1, OUTPUT);
+servo1.attach(9);
+servo2.attach(8);
+servo.attach(10);
+// initialize the LED pin as an output:
+  pinMode(ledPin, OUTPUT);
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPin, INPUT);
 }
-
+//int servo rotation loop
 void loop()
+ {
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(buttonPin);
+
+  // check if the pushbutton is pressed.
+  // if it is, the buttonState is HIGH:
+  if (buttonState == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin, HIGH);
+
+  //rotate from 0 deg to 100 deg for regolith container
+for(servoPos=150; servoPos>70; servoPos -=1)
 {
-  // Switches on LED relay.
-  digitalWrite(Relay1, HIGH);
-
-  // goes from 0 degrees to 180 degrees. 
-  for (pos = 0; pos <= 180; pos++)
-  {
-    // loop is excecuted in steps of 1 degree 
-
-    // tells servoA go to position in variable 'pos'
-    servoA.write(pos);     
-    
-    // establishes a 1ms delays in between the servos.
-    delay(1);                    
-
-    // tells servoB go to position in variable 'pos'
-    servoB.write(pos);           
-
-    // wait 15ms for the servo to reach the position
-    delay(15);                     
+  servo1.write(servoPos);
+  delay(3);
+}
+delay(100);
+//rotate from 0 deg to 50 deg for launcher unit
+for(servoPos=70; servoPos >0; servoPos -=1)
+{
+  servo2.write(servoPos);
+  delay(3);
+}
+delay(3);
+for(servoPos=150; servoPos >70; servoPos -=1)
+{
+servo.write(servoPos);
+delay(3000);
+}
+ delay(30);
+}
+ else
+ {
+    // turn LED off:
+    digitalWrite(ledPin, LOW);
   }
-
-  // goes from 180 degrees to degrees 180
-  for (pos = 180; pos >= 0; pos--)
-  {
-    // works just like the previous loop, but in reverse.
-    servoA.write(pos);
-    delay(1);
-    servoB.write(pos);
-    delay(15);
-  }
-
-  // ten second delay
-  delay(10000);
-  // Switches off LED relay.
-  digitalWrite(LED_BUILTIN, LOW);
-
-  delay(10);
 }
