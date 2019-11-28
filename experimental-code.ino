@@ -1,21 +1,29 @@
+// =============================================================================
+// THIS FILE CONTAINS EARLY ITERATIONS OF PRIME R'S SOURCE CODE. EVENTUALLY THIS 
+// LOGIC WILL BE CONVERTED TO PYTHON AND RUN ON A RASPBERRY PI. 
+//
+// AUTHORS: SEBASTIAN LOPEZ AND ANDY TORRES 
+// =============================================================================
+
 #include <Servo.h>
 
 Servo servo1;
 Servo servo2;
 Servo servo;
 
-//seting up initial position
-int servoPos =50;
+// seting up initial position
+int servoPos = 50;
+
+// variables will change:
+// variable for reading the pushbutton status.
 int buttonState = 0; 
 
 // constants won't change. They're used here to
 // set pin numbers:
-int buttonPin = 6;     // the number of the pushbutton pin
-int ledPin =  7;      // the number of the LED pin
+int buttonPin = 6; 
+int ledPin = 7;      
 
-// variables will change:
-// variable for reading the pushbutton status
-//defining pins
+// defining pins
 void setup()
 {
   // attach servo motors:
@@ -28,20 +36,19 @@ void setup()
   pinMode(buttonPin, INPUT);
 }
 
-//int servo rotation loop
+// servo rotation loop
 void loop()
- {
+{
   // read the state of the pushbutton value:
   buttonState = digitalRead(buttonPin);
 
   // check if the pushbutton is pressed.
-  // if it is, the buttonState is HIGH:
   if (buttonState == HIGH)
   {
     // turn LED on:
     digitalWrite(ledPin, HIGH);
 
-    //rotate from 0 deg to 100 deg for regolith container
+    // rotate from 0 deg to 100 deg for regolith container
     for(servoPos=150; servoPos>70; servoPos -=1)
     {
       servo1.write(servoPos);
@@ -50,8 +57,8 @@ void loop()
 
     delay(100);
 
-    //rotate from 0 deg to 50 deg for launcher unit
-    for(servoPos=70; servoPos >0; servoPos -=1)
+    // rotate from 0 deg to 50 deg for launcher unit
+    for(servoPos=70; servoPos > 0; servoPos -=1)
     {
       servo2.write(servoPos);
       delay(3);
