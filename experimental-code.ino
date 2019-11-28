@@ -2,7 +2,7 @@
 // THIS FILE CONTAINS EARLY ITERATIONS OF PRIME R'S SOURCE CODE. EVENTUALLY THIS 
 //        LOGIC WILL BE CONVERTED TO PYTHON AND RUN ON A RASPBERRY PI. 
 //
-//                  AUTHORS: SEBASTIAN LOPEZ AND ANDY TORRES 
+//                  AUTHORS: SEBASTIAN LOPEZ & ANDY TORRES 
 // =============================================================================
 
 #include <Servo.h>
