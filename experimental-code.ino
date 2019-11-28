@@ -1,8 +1,8 @@
 // =============================================================================
 // THIS FILE CONTAINS EARLY ITERATIONS OF PRIME R'S SOURCE CODE. EVENTUALLY THIS 
-// LOGIC WILL BE CONVERTED TO PYTHON AND RUN ON A RASPBERRY PI. 
+//        LOGIC WILL BE CONVERTED TO PYTHON AND RUN ON A RASPBERRY PI. 
 //
-// AUTHORS: SEBASTIAN LOPEZ AND ANDY TORRES 
+//                  AUTHORS: SEBASTIAN LOPEZ AND ANDY TORRES 
 // =============================================================================
 
 #include <Servo.h>
@@ -11,45 +11,45 @@ Servo servo1;
 Servo servo2;
 Servo servo;
 
-// seting up initial position
+// Seting up initial position
 int servoPos = 50;
 
-// variables will change:
-// variable for reading the pushbutton status.
+// Variables will change:
+// Variable for reading the pushbutton status.
 int buttonState = 0; 
 
-// constants won't change. They're used here to
-// set pin numbers:
+// Constants won't change. They're used here to
+// Set pin numbers:
 int buttonPin = 6; 
 int ledPin = 7;      
 
-// defining pins
+// Defining pins
 void setup()
 {
-  // attach servo motors:
+  // Attach servo motors:
   servo1.attach(9);
   servo2.attach(8);
   servo.attach(10);
-  // initialize the LED pin as an output:
+  // Initialize the LED pin as an output:
   pinMode(ledPin, OUTPUT);
-  // initialize the pushbutton pin as an input:
+  // Initialize the pushbutton pin as an input:
   pinMode(buttonPin, INPUT);
 }
 
-// servo rotation loop
+// Servo rotation loop
 void loop()
 {
-  // read the state of the pushbutton value:
+  // Read the state of the pushbutton value:
   buttonState = digitalRead(buttonPin);
 
-  // check if the pushbutton is pressed.
+  // Check if the pushbutton is pressed.
   if (buttonState == HIGH)
   {
-    // turn LED on:
+    // Turn LED on:
     digitalWrite(ledPin, HIGH);
 
-    // rotate from 0 deg to 100 deg for regolith container
-    for(servoPos=150; servoPos>70; servoPos -=1)
+    // Rotate from 0 deg to 100 deg for regolith container
+    for(servoPos = 150; servoPos > 70; servoPos -= 1)
     {
       servo1.write(servoPos);
       delay(3);
@@ -57,7 +57,7 @@ void loop()
 
     delay(100);
 
-    // rotate from 0 deg to 50 deg for launcher unit
+    // Rotate from 0 deg to 50 deg for launcher unit
     for(servoPos=70; servoPos > 0; servoPos -=1)
     {
       servo2.write(servoPos);
@@ -76,7 +76,7 @@ void loop()
   }
   else
   {
-    // turn LED off:
+    // Turn LED off:
     digitalWrite(ledPin, LOW);
   }
 }
